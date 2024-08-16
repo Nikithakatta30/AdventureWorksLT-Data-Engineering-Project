@@ -1,0 +1,34 @@
+{
+	"name": "ds_metadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "src_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "src_table",
+				"type": "varchar"
+			},
+			{
+				"name": "sink_folder",
+				"type": "varchar"
+			},
+			{
+				"name": "sink_file",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "configfile"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

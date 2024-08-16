@@ -1,0 +1,9 @@
+{
+	"name": "adfonpremise0815",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ba465132-07ec-4036-a47f-ea4c10843dda",
+		"tenantId": "9e857255-df57-4c47-a0c0-0546460380cb"
+	}
+}
