@@ -2,38 +2,53 @@
 
 # Introduction:
 
-This project showcases the implementation of a data engineering pipeline using the Medallion Architecture on Azure. The source data is based on the AdventureWorksLT2014 dataset, which has been transformed and optimized for analytics using various Azure services.
+This project demonstrates the implementation of a data engineering pipeline using the Medallion Architecture on Azure. The source data is derived from the AdventureWorksLT2014 dataset, which has been transformed and optimized for analytics using a variety of Azure services.
 
 # Architecture:
 
-Medalian architecture is used in this project which consists of Gold, Silver and Bronze layer. In bronze layer there is a raw data, in silver layer first level of transformed data and in gold layer there is refined data.
+The project leverages the Medallion Architecture, comprising three layers:
+
+Bronze Layer: Contains raw, unprocessed data.
+Silver Layer: Holds data that has undergone the first level of transformation, such as data type conversions.
+Gold Layer: Stores refined and optimized data, ready for analytics.
 
 ![project architecture](https://camo.githubusercontent.com/37573774dd97aa2f646ce074d8c8c731a1f52285fa6c6a0694058dfacbd55151/68747470733a2f2f6d656469612e6c6963646e2e636f6d2f646d732f696d6167652f4435363232415148417847655043376e415a512f6665656473686172652d736872696e6b5f313238302f302f313730353932333931313530323f653d3137323637303430303026763d6265746126743d7a4e61702d383772316135563157636943485a737778333456664a626c65627148487955324177754b7767)
 
 # Tools and Technology:
 
-1. Languages: Python, Pyspark, SQL
-2. Azure Services: Azure SQL Databases, Azure SQL Server, Azure Data Lake Storage Gen2,Azure Data Factory, Azure Key Vault, Azure Databricks, Azure Synapse Analytics
+1. Languages: Python, PySpark, SQL
+Azure Services: Azure SQL Database, Azure SQL Server, Azure Data Lake Storage Gen2 (ADLS Gen2), Azure Data Factory (ADF), Azure Key Vault, Azure Databricks, Azure Synapse Analytics
 
 # Source:
 
-In this project we used AdventureWorksLT data, which consists of multiple tables related to sales such as information related to customers and orders. This data is stored in SQL Databases.
+The project uses the AdventureWorksLT2014 dataset, which includes various tables related to sales, such as customer and order information. This data is stored in Azure SQL Database.
 
-# Steps Involved For Data Ingestion:
+# Data Ingestion Steps:
 
-1. Data is stored in Azure SQL Database, stored the password in the key vault in secrets for the privacy.
-2. Created a Azure Data Factory, using linked services connected to the ADLSGEN2, Azure SQL DB and Key vault and published. Most important, to use key vault in other linked services. First key vault should be created and published then only it can be used.
-3. Created Dataset for a configfile. Ingesting multiple tables from SQL DB to ADLSGEN2, so using configfile which is the metadata which consists of source schema, source table name, sink container and sink folder.
-4. Created parameters for both the datasets to the arguments src_schema, src_table, sink_container, sink_folder
-5. Created Dataset for ADLSGEN2 and SQL DB also. Created a pipeline with Lookup activity, for each activity and copy activity.
+Data Storage: The data is stored in Azure SQL Database, with passwords securely stored in Azure Key Vault.
+Azure Data Factory (ADF) Setup: Created ADF, connected it to ADLS Gen2, Azure SQL Database, and Key Vault via linked services. It’s crucial to publish Key Vault first to use it in other linked services.
+Config File: Developed a config file as metadata, specifying source schema, source table name, sink container, and sink folder for ingesting multiple tables from SQL DB to ADLS Gen2.
+Parameterization: Added parameters for both datasets to handle arguments like src_schema, src_table, sink_container, and sink_folder.
+Pipeline Creation: Created datasets for ADLS Gen2 and SQL DB. Built a pipeline utilizing Lookup, For Each, and Copy activities for data ingestion.
 
-# Steps Involved For Data Transformation:
+# Data Transformation Steps:
 
-For transforming the data we used databricks, created a compute and 3 notebooks for mount, silver layer and gold layer. In mount, created a connection between bronze layer in adlsgen2, silver layer and gold layer.
-Used silver layer for first level transformations, gold layer for further transformations.
+Data transformation was conducted in Azure Databricks:
 
-# Steps Involved In Loading Data To Synapse Analytics:
+Notebook Creation: Three notebooks were created—for mounting, silver layer transformation, and gold layer transformation.
+Mounting: Established connections between the Bronze layer in ADLS Gen2, and the Silver and Gold layers.
+Silver Layer: Applied first-level transformations.
+Gold Layer: Executed further transformations, such as converting column names to uppercase.
 
-All the data in silver and gold layer is in delta file format. As this file format cannot be used for analytics purposes. To do this, used synapse analytics. created a serverless pool names DB_0815. Next created linked services to ADLSGEN2 gold layer.
-Created a view using the sql script for converting the 
+# Loading Data Into Synapse Analytics:
+
+The data in the Silver and Gold layers is stored in Delta file format, which is not directly usable for analytics. To make it accessible:
+
+Synapse Analytics Setup: Set up a serverless SQL pool named DB_0815.
+Linked Services: Connected Synapse Analytics to the ADLS Gen2 Gold layer.
+Stored Procedure: Created a stored procedure to convert Delta files into a tabular format suitable for Power BI analytics.
+This transformed data is now ready for advanced analytics and reporting.
+
+
+This data can be used for further analytics purposes.
 
