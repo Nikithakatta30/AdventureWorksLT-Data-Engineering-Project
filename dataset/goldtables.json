@@ -1,0 +1,19 @@
+{
+	"name": "goldtables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapse0815-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "SalesLT",
+				"fileSystem": "fsonprem0815"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

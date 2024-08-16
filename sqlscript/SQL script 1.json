@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "USE DB_0815\nGO\nCREATE OR ALTER PROC Creates@LServerlessView_gold @ViewName nvarchar (100)\nAS\nBEGIN\n\nDECLARE @statement VARCHAR(MAX)\n    SET @statement = N'CREATE OR ALTER VIEW ' + @ViewName + ' AS\n        SELECT *\n        FROM\n            OPENROWSET(\n            BULK ''https://adlsgen2synapse0815.dfs.core.windows.net/fsonprem0815/SalesLT/'+ @ViewName + '/'',\n            FORMAT = ''DELTA''\n        ) as [result]\n    '\n\nEXEC (@statement)\n\nEND\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DB_0815",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

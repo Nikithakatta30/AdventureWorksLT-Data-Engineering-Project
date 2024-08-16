@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [Ad-d-r-e-s-s-ID]\n,[Ad-d-r-e-s-s-Li-n-e-1]\n,[Ad-d-r-e-s-s-Li-n-e-2]\n,[Ci-t-y]\n,[St-a-t-e-Pr-o-v-i-n-c-e]\n,[Co-u-n-t-r-y-Re-g-i-o-n]\n,[Po-s-t-a-l-Co-d-e]\n,[r-o-w-g-u-i-d]\n,[Mo-d-i-f-i-e-d-Da-t-e]\n FROM [dbo].[Address]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DB_0815",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
