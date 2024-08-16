@@ -31,6 +31,8 @@ Config File: Developed a config file as metadata, specifying source schema, sour
 Parameterization: Added parameters for both datasets to handle arguments like src_schema, src_table, sink_container, and sink_folder.
 Pipeline Creation: Created datasets for ADLS Gen2 and SQL DB. Built a pipeline utilizing Lookup, For Each, and Copy activities for data ingestion.
 
+
+
 # Data Transformation Steps:
 
 Data transformation was conducted in Azure Databricks:
